@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Gallery — Local Photo Showcase</title>
+  <meta name="description" content="A premium, fully responsive local photo gallery website featuring smooth CSS grid layouts, dynamic category filtering, and an immersive keyboard-navigable lightbox.">
+  
+  <!-- Premium Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Glow Accents -->
+  <div class="glow-accent glow-1"></div>
+  <div class="glow-accent glow-2"></div>
+
+  <!-- Premium Header Section -->
+  <header class="header">
+    <div class="header-container glass-panel">
+      <h1 class="logo">
+        <span class="logo-accent">Aura</span>Gallery
+      </h1>
+      <p class="subtitle">Capturing memories, structured beautifully.</p>
+      
+      <!-- Persistent Sync Status Panel -->
+      <div class="sync-panel" id="syncPanel">
+        <!-- Controls, buttons and warnings will be injected dynamically via JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Glassmorphic Filter Navigation -->
+  <nav class="filter-navbar" id="filterNavbar">
+    <div class="filter-container glass-panel">
+      <button class="filter-btn active" data-filter="all" id="filter-all">
+        <span class="btn-text">All</span>
+        <span class="badge" id="badge-all">0</span>
+      </button>
+      <button class="filter-btn" data-filter="nature" id="filter-nature">
+        <span class="btn-text">Nature</span>
+        <span class="badge" id="badge-nature">0</span>
+      </button>
+      <button class="filter-btn" data-filter="family" id="filter-family">
+        <span class="btn-text">Family</span>
+        <span class="badge" id="badge-family">0</span>
+      </button>
+      <button class="filter-btn" data-filter="travel" id="filter-travel">
+        <span class="btn-text">Travel</span>
+        <span class="badge" id="badge-travel">0</span>
+      </button>
+      <button class="filter-btn" data-filter="friends" id="filter-friends">
+        <span class="btn-text">Friends</span>
+        <span class="badge" id="badge-friends">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Gallery Grid Section -->
+  <main class="gallery-section">
+    <div class="gallery-grid" id="galleryGrid" aria-live="polite">
+      <!-- Image cards will be dynamically injected here via JS -->
+    </div>
+    
+    <!-- Empty State for filters with no images (defensive design) -->
+    <div class="empty-state glass-panel" id="emptyState" style="display: none;">
+      <svg class="empty-icon" viewBox="0 0 24 24" width="48" height="48">
+        <path fill="currentColor" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
+      </svg>
+      <h3>No photos found</h3>
+      <p>Please check your local folder or adjust your filter selection.</p>
+    </div>
+  </main>
+
+  <!-- Immersive Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <!-- Lightbox Backdrop Overlay (for click-to-close) -->
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    
+    <!-- Close Button -->
+    <button class="lightbox-control close-btn" id="closeBtn" aria-label="Close Lightbox" title="Close (Esc)">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Navigation Arrows -->
+    <button class="lightbox-control prev-btn" id="prevBtn" aria-label="Previous Image" title="Previous (←)">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </button>
+    
+    <button class="lightbox-control next-btn" id="nextBtn" aria-label="Next Image" title="Next (→)">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </button>
+
+    <!-- Lightbox Main Frame -->
+    <div class="lightbox-frame">
+      <div class="lightbox-image-wrapper glass-panel">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery Image Expanded">
+        <div class="loader" id="lightboxLoader"></div>
+      </div>
+      
+      <!-- Footer Caption Area -->
+      <div class="lightbox-footer glass-panel">
+        <div class="lightbox-caption-wrap">
+          <span class="lightbox-category" id="lightboxCategory">Category</span>
+          <h2 class="lightbox-title" id="lightboxTitle">Image Title</h2>
+        </div>
+        <div class="lightbox-counter" id="lightboxCounter">1 of 12</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Aura Gallery. Designed for CodeAlpha Internship.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
